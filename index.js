@@ -1,5 +1,6 @@
 const express = require("express");
 const userRoutes = require("./routes/user.routes");
+const taskRoutes = require("./routes/task.routes")
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
