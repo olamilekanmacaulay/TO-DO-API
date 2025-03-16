@@ -20,6 +20,17 @@ const getTasks = async (req, res) => {
   }
 };
 
+const getTasksByCategory = async (req, res) => {
+	try {
+    	const { category } = req.params;
+    	const tasks = await Task.find({ user: req.userId, category }); // Filter by user and category
+    	res.json(tasks);
+  	} catch (error) {
+    	res.status(400).json({ error: error.message });
+  }
+};
+
+
 const updateTask = async (req, res) => {
   try {
     const { id } = req.params;
@@ -40,4 +51,4 @@ const deleteTask = async (req, res) => {
   }
 };
 
-module.exports = { createTask, getTasks, updateTask, deleteTask };
+module.exports = { createTask, getTasks, getTasksByCategory, updateTask, deleteTask };
