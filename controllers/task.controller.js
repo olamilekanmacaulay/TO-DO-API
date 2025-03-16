@@ -32,23 +32,23 @@ const getTasksByCategory = async (req, res) => {
 
 
 const updateTask = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const task = await Task.findOneAndUpdate({ _id: id, user: req.userId }, req.body, { new: true });
-    res.json(task);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
+  	try {
+    	const { id } = req.params;
+    	const task = await Task.findOneAndUpdate({ _id: id, user: req.userId }, req.body, { new: true });
+    	res.json(task);
+  	} catch (error) {
+    	res.status(400).json({ error: error.message });
   }
 };
 
 const deleteTask = async (req, res) => {
-  try {
-    const { id } = req.params;
-    await Task.findOneAndDelete({ _id: id, user: req.userId });
-    res.json({ message: 'Task deleted successfully' });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+  	try {
+    	const { id } = req.params;
+    	await Task.findOneAndDelete({ _id: id, user: req.userId });
+    	res.json({ message: 'Task deleted successfully' });
+  	} catch (error) {
+    	res.status(400).json({ error: error.message });
+  	}
 };
 
 module.exports = { createTask, getTasks, getTasksByCategory, updateTask, deleteTask };
